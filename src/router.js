@@ -6,18 +6,18 @@ const routes = [
     {
     path: '/',
     name: 'beranda',
-    component: () => import('@/components/LandingPage.vue'),
+    component: () => import('@/components/Navigation.vue'),
         children:[
-        // {
-        //     path: "/departemen",
-        //     name: "departemen.index",
-        //     component: () => import('@/views/Departemen/indexPage.vue'),
-        // },
-        // {
-        //     path: "/departemen/create",
-        //     name: "departemen.create",
-        //     component: () => import('@/views/Departemen/createPage.vue'),
-        // },
+            {
+                path: "/home",
+                name: "components.home",
+                component: () => import('@/components/LandingPage.vue'),
+            },
+            {
+            path: "/keranjang",
+            name: "barang.keranjang",
+            component: () => import('@/views/Barang/Keranjang.vue'),
+            },
         ],
     },
 ]
