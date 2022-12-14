@@ -19,19 +19,18 @@
                         <div class="col">
                             <div class="p-3">
                             <h3>Toko A</h3>
-                                <div class="card mb-3 text-center" style="max-width: 540px;">
-                                    <div class="align-items-center row row g-0">
-                                        <div class="col-md-4">
-                                            <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/12/9/c05793bd-7c95-419f-885c-843a7d3985e9.png" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h3 class="card-title">Card title</h3>
-                                                <h5 class="card-title">RP 100000</h5>
-                                                <div class="card" style="max-width: 540px;">
-                                                    <p class="bi-plus-circle-dotted"></p>
-                                                    <p>2</p> 
-                                                    <p class="bi-plus-circle-dotted"></p>
+                                <div v-for="(keranjang, id) in keranjangs" :key="id">
+                                    <div class="card mb-3 text-center" style="max-width: 540px;">
+                                        <div class="align-items-center row row g-0">
+                                            <div class="col-md-8">
+                                                <img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2022/12/9/c05793bd-7c95-419f-885c-843a7d3985e9.png" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h3 class="card-title">{{ keranjang.idBarang }}</h3>
+                                                    <h5 class="card-title">{{ keranjang.idUser }}</h5>
+                                                    <h5 class="card-title">{{ keranjang.gambarBarang }}</h5>
+                                                    <!-- <p>-</p>
+                                                    <p class="card-text">{{ keranjang.kuantitas }}</p>
+                                                    <p>+</p> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -47,46 +46,30 @@
 
 </template>
 <script>
-import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { onMounted, ref } from 'vue'
+// import { reactive, ref } from'vue'
+// import { useRouter } from 'vue-router'
+
 export default {
     setup() {
-        //state keranjang
-        const keranjang = reactive({
-            idKeranjang:'',
-            namaBarang: '',
-        })
-
-        //state validation
-        const validation = ref([])
-
-        //vue router
-        const router = useRouter()
-
-        //method store
-        function store() {
-            let idKeranjang = keranjang.idKeranjang
-            let namaBarang = keranjang.namaBarang
-            axios.post('http://localhost:8000/api/proyeks', {
-                idKeranjang: idKeranjang,
-                namaBarang: namaBarang,
-            }).then(() => {
-                //redirect ke post index
-                router.push({
-                    name: 'barang.keranjang'
-                })
+        //reactive state
+        let keranjangs = ref([])
+        //mounted
+        onMounted(() => {
+            //get API from Laravel Backend
+            axios.get('https://tubesuaswebbackend.itkitapro.com/api/keranjang')
+            .then(response => {
+                //assign state posts with response data
+                keranjangs.value = response.data
+                console.log(response.data.data)
             }).catch(error => {
-                //assign state validation with error
-                validation.value = error.response.data
+                console.log(error.response.data)
             })
-        }
+        })
         //return
         return {
-            keranjang,
-            validation,
-            router,
-            store
+            keranjangs
         }
     }
 }
