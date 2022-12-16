@@ -15,15 +15,66 @@
         <router-link :to="{ name: 'components.home' }" class="bi-house-fill">Home</router-link>
         <div class="d-flex my-2 my-lg-0">
             <router-link :to="{ name: 'barang.keranjang' }" class="btn btn-success bi-bag-check-fill me-2">Keranjang</router-link>
-            <button class="btn btn-outline-success me-2" type="submit">Login</button>
+            <!-- <span-if></span-if> -->
+            <router-link :to="{ name: 'page.registerpage' }" class="btn btn-outline-success me-2">Register</router-link>
+            <router-link :to="{ name: 'page.loginpage' }" class="btn btn-outline-success me-2">Login</router-link>
         </div>
       </div>
     </nav>
     <main>
         <router-view></router-view>
     </main>
-    </template>
+
+    <footer class="fixed-bottom" style="background-color:aquamarine;">
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      
+      <a class="bi bi-instagram"
+        href="#!"
+        role="button"
+        style="font-size: 40px;
+        color: #dd4b39;
+        padding-right: 3cm;
+        ">
+    </a>
+
+      <a
+        class="bi bi-facebook"
+        href="#!"
+        role="button"
+        style="font-size: 40px;
+        color: lightskyblue;
+        padding-right: 3cm;
+        ">
+      </a>
+
+      <a
+      class="bi bi-twitter"
+        href="#!"
+        role="button"
+        style="font-size: 40px;
+        color: lightskyblue;
+        padding-right: 3cm;
+        ">
+      </a>
+      <a 
+      style="
+      padding-right: 3cm;">
+        (nomor telepon)
+      </a>
+      <a
+      style="
+      padding-right: 3cm;">about us</a>
+      
+
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.3);">
+      E-Commerce Web by Kelompok G
+    </div>
+    <!-- Copyright -->
+  </footer>
     
+  </template>
     <script>
     export default {
     }

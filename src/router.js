@@ -12,12 +12,24 @@ const routes = [
                 path: "/home",
                 name: "components.home",
                 component: () => import('@/components/LandingPage.vue'),
+             
             },
             {
             path: "/keranjang",
             name: "barang.keranjang",
             component: () => import('@/views/Barang/Keranjang.vue'),
+
             },
+            {
+                path: "/regis",
+                name: "page.registerpage",
+                component: () => import('@/views/Page/RegisterPage.vue'),
+            },
+            {
+                path: "/login",
+                name: "page.loginpage",
+                component: () => import('@/views/Page/LoginPage.vue'),
+            }
         ],
     },
 ]
